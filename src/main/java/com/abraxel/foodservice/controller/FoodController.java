@@ -17,7 +17,7 @@ public class FoodController {
         List<String> ingredients = new ArrayList<>();
         ingredients.add("ŞEKER");
         ingredients.add("BAL");
-        ingredients.add("GÜZEL OLAN HER ŞEY");
+        ingredients.add("GÜZEL OLAN HER ŞEYİMSİN");
 
         Food food = new Food();
         food.setFoodName("ESRANUR");
