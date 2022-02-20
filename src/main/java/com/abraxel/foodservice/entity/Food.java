@@ -1,13 +1,29 @@
 package com.abraxel.foodservice.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
-import java.util.List;
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
-public class Food {
+@Entity
+@Table(name = "food")
+public class Food implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long Id;
     private String foodName;
-    private List<String> ingredients;
+    @JsonIgnore
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<Ingredients> ingredients = new HashSet<>();
     private String recipe;
     private String imageURL;
+
+    public void addIngredients(Ingredients ingredients){
+        this.ingredients.add(ingredients);
+    }
 }
+
